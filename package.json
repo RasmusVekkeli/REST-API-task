@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Simple demo of a REST API",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0"
   },
   "devDependencies": {},
   "scripts": {
