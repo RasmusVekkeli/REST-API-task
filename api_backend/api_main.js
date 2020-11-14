@@ -14,10 +14,11 @@ app.use(function (err, req, res, next) {
 	// Handle invalid tokens
 	if (err.name === "UnauthorizedError") {
 		// Send back error info as JSON
-		res.status(401).json(
+		res.status(err.status).json(
 			{
-				status: 401,
-				error: "Invalid token"
+				status: err.status,
+				name: err.name,
+				message: err.message
 			}
 		);
 		
