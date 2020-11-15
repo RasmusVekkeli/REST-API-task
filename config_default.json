@@ -1,0 +1,7 @@
+{
+	"api_backend": {
+		"port": 80,
+		"secret": "",
+		"omdbKey": ""
+	}
+}
