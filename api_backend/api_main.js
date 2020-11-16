@@ -58,6 +58,26 @@ app.get("/getMovie", async (req, res) => {
 	res.json(await fetchAsJSON(apiQuery));
 });
 
+// Gets book from OpenLibrary
+app.get("/getBook", async (req, res) => {
+	// Check if the ISBN is provided, send error message if it's not
+	if (req.query.isbn === undefined) {
+		res.json(
+			{
+				status: res.statusCode,
+				message: "Query parameter \"isbn\" must be set!"
+			}
+		);
+
+		return;
+	}
+
+	const apiQuery = `https://openlibrary.org/isbn/${req.query.isbn}.json`;
+
+	// Send resulting information back as JSON
+	res.json(await fetchAsJSON(apiQuery));
+});
+
 app.listen(config.port, () => {
 	console.log(`Server listening on port ${config.port}`);
 });
