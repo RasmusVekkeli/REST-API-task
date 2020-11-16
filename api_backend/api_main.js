@@ -10,6 +10,7 @@ const app = express();
 // Middleware for authenticating JWTs 
 app.use(jwt({ secret: config.secret, algorithms: ["HS256"] }));
 
+// Error handling middleware
 app.use(function (err, req, res, next) {
 	// Handle invalid tokens
 	if (err.name === "UnauthorizedError") {
@@ -54,7 +55,7 @@ app.get("/getMovie", async (req, res) => {
 	}
 
 	// Send resulting information back as JSON
-	res.json(fetchAsJSON(apiQuery));
+	res.json(await fetchAsJSON(apiQuery));
 });
 
 app.listen(config.port, () => {
