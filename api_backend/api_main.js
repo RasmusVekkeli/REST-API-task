@@ -1,5 +1,5 @@
 const express = require("express");
-const fetch = require("node-fetch");
+const fetchAsJSON = require("./fetch_as_json");
 const jwt = require("express-jwt");
 
 // Load config for the backend
@@ -54,13 +54,7 @@ app.get("/getMovie", async (req, res) => {
 	}
 
 	// Send resulting information back as JSON
-	res.json(
-		// This "await" waits for the Response.json() function because for some reason the function which parses the response body as JSON has to be asynchronous
-		await (
-			// Query the OMDb API
-			await fetch(apiQuery)
-		).json()
-	);
+	res.json(fetchAsJSON(apiQuery));
 });
 
 app.listen(config.port, () => {
