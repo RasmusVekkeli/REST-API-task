@@ -9,7 +9,7 @@ npm install
 ```
 
 ## Configuring
-Create file `config.json`.  
+Create file `config.json` by copying and renaming `config_default.json`.  
 File contents:
 ```js
 {
@@ -28,4 +28,14 @@ Run command:
 npm start
 ```
 
-Now you can send your API requests to `localhost`
+Now you can send your API requests to `http://localhost`
+
+# Generating a test token
+First follow the instructions in **Setting up** and **Configuring** sections.  
+
+Next run the following command:
+```
+node generate_jwt.js
+```
+
+The file `api.token` should have been created in the project root directory.
