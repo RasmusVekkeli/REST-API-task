@@ -3,7 +3,7 @@
 	// Url should not contain any characters that should be escaped already
 	function sendHttpRequest($url, $httpOptions){
 		// Stream context
-		$ctx = ["http" => $httpOptions];
+		$ctx = stream_context_create(["http" => $httpOptions]);
 
 		return file_get_contents($url, false, $ctx);
 	}
