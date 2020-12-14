@@ -24,4 +24,16 @@
 
 		return $baseURL;
 	}
+
+	// Returns token as string if the token file exists
+	// Returns false if the token wasn't found
+	// The path is seems to be relative to the current working directory instead of the script file directory
+	// TODO: Figure out a better way to deal with the path than this
+	function getToken(){
+		if(!file_exists("api.token")){
+			return false;
+		}
+
+		return file_get_contents("api.token");
+	}
 ?>
