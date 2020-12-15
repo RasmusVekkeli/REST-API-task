@@ -4,28 +4,19 @@
 	// TODO: Move this into the config.json
 	$baseUrl = "http://localhost/";
 
-	// Function which calls the APIs getMovie endpoint with the proper parameters
-	// Returns the raw response body as string
-	function getMovie($title, $year, $plot){
+	// Helper function to setup authorization and encoding query parameters into the url
+	// $endpoint is the wanted API endpoint as string
+	// $queryArr is an array of query keys and values
+	// Returns the response body as string
+	function apiRequest($endpoint, $queryArr){
 		global $baseUrl;
 		$url = $baseUrl;
 
 		// Add specific endpoint to the URL
-		$url .= "getMovie";
-
-		// Set up the query parameters
-		$pArr = ["title" => $title];
-		
-		if(isset($year)){
-			$pArr["year"] = $year;
-		}
-		
-		if(isset($plot)){
-			$pArr["plot"] = $plot;
-		}
+		$url .= $endpoint;
 
 		// Get the final encoded url
-		$url = compileQueryURL($url, $pArr);
+		$url = compileQueryURL($url, $queryArr);
 
 		// TODO: check for false token
 		$token = getToken();
@@ -36,5 +27,29 @@
 		];
 
 		return sendHttpRequest($url, $httpOpts);
+	}
+
+	// Function which calls the APIs getMovie endpoint with the proper parameters
+	// Returns the raw response body as string
+	function getMovie($title, $year, $plot){
+		// Set up the query parameters
+		$queryArr = ["title" => $title];
+		
+		if(isset($year)){
+			$queryArr["year"] = $year;
+		}
+		
+		if(isset($plot)){
+			$queryArr["plot"] = $plot;
+		}
+
+		return apiRequest("getMovie", $queryArr);
+	}
+
+	// Same as getMovie but for the getBook API endpoint
+	function getBook($isbn){
+		$queryArr = ["isbn" => $isbn];
+
+		return apiRequest("getBook", $queryArr);
 	}
 ?>

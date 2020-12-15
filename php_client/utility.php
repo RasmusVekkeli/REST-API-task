@@ -1,6 +1,6 @@
 <?php
 	// A function to help send http requests to save my sanity.
-	// Url should not contain any characters that should be escaped already
+	// Url should not contain any characters that should have been escaped already
 	function sendHttpRequest($url, $httpOptions){
 		// Stream context
 		$ctx = stream_context_create(["http" => $httpOptions]);
