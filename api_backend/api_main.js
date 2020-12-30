@@ -53,9 +53,13 @@ app.get("/getMovie", async (req, res) => {
 	if (req.query.plot !== undefined) {
 		apiQuery += `plot=${req.query.plot}&`;
 	}
+	
+	const apiRes = await fetchAsJSON(apiQuery);
+
+	console.log(apiRes);
 
 	// Send resulting information back as JSON
-	res.json(await fetchAsJSON(apiQuery));
+	res.json(apiRes);
 });
 
 // Gets book from OpenLibrary
@@ -74,8 +78,12 @@ app.get("/getBook", async (req, res) => {
 
 	const apiQuery = `https://openlibrary.org/isbn/${req.query.isbn}.json`;
 
+	const apiRes = await fetchAsJSON(apiQuery);
+
+	console.log(apiRes);
+
 	// Send resulting information back as JSON
-	res.json(await fetchAsJSON(apiQuery));
+	res.json(apiRes);
 });
 
 app.listen(config.port, () => {
