@@ -31,7 +31,7 @@
 
 	// Function which calls the APIs getMovie endpoint with the proper parameters
 	// Returns the raw response body as string
-	function getMovie($title, $year, $plot){
+	function getMovie($title, $year, $longPlot){
 		// Set up the query parameters
 		$queryArr = ["title" => $title];
 		
@@ -39,9 +39,8 @@
 			$queryArr["year"] = $year;
 		}
 		
-		if(isset($plot)){
-			$queryArr["plot"] = $plot;
-		}
+		// Convert $longPlot to something that could be used in a query
+		$queryArr["plot"] = isset($longPlot) ? "long" : null;
 
 		return apiRequest("getMovie", $queryArr);
 	}
