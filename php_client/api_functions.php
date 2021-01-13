@@ -18,8 +18,11 @@
 		// Get the final encoded url
 		$url = compileQueryURL($url, $queryArr);
 
-		// TODO: check for false token
 		$token = getToken();
+
+		if(!$token){
+			throw new UnexpectedValueException("Failed to get token: getToken() returned false!");
+		}
 
 		// Set up the JWT token
 		$httpOpts = [
