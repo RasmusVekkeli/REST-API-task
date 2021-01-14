@@ -29,11 +29,27 @@
 	// Returns false if the token wasn't found
 	// The path is seems to be relative to the current working directory instead of the script file directory
 	// TODO: Figure out a better way to deal with the path than this
-	function getToken(){
-		if(!file_exists("api.token")){
+	function getToken($path){
+		if(!file_exists($path)){
 			return false;
 		}
 
-		return file_get_contents("api.token");
+		return file_get_contents($path);
+	}
+
+	// Value Or Null
+	// Returns $primaryValue or $secondaryValue if they are set. Prioritises $primaryValue.
+	// Returns null if not set
+	function von($primaryValue, $secondaryValue)
+	{
+		if (isset($primaryValue)) {
+			return $primaryValue;
+		}
+
+		if (isset($secondaryValue)) {
+			return $secondaryValue;
+		}
+
+		return null;
 	}
 ?>

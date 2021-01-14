@@ -1,19 +1,6 @@
 <?
-	require "api_functions.php";
-	// Value Or Null
-	// Returns $primaryValue or $secondaryValue if they are set. Prioritises $primaryValue.
-	// Returns null if not set
-	function von($primaryValue, $secondaryValue){
-		if(isset($primaryValue)){
-			return $primaryValue;
-		}
-
-		if(isset($secondaryValue)){
-			return $secondaryValue;
-		}
-
-		return null;
-	}
+	require_once "api_functions.php";
+	require_once "utility.php";
 
 	// Options:
 	// -m, --movie					Set search for movie
@@ -49,6 +36,9 @@
 		return;
 	}
 
+	// Get token
+	$token = getToken("api.token");
+
 	// Search for book
 	if(isset($book)){
 		// Make sure that $isbn exists
@@ -82,7 +72,7 @@
 			return;
 		}
 
-		echo(getMovie($title, $year, $longPlot));
+		echo(getMovie($title, $year, $longPlot, $token));
 		return;
 	}
 	?>
