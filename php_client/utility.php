@@ -1,4 +1,23 @@
 <?php
+	$config = null;
+
+	// Loads config.json
+	function loadConfig(){
+		if(!file_exists("config.json")){
+			throw new RuntimeException("No config.json file found. Make sure that your current working directory contains config.json.");
+		}
+
+		$file = file_get_contents("config.json");
+
+		global $config;
+
+		$fullConfig = json_decode($file);
+
+		$config = $fullConfig->{"client"};
+	}
+
+	loadConfig();
+
 	// A function to help send http requests to save my sanity.
 	// Url should not contain any characters that should have been escaped already
 	function sendHttpRequest($url, $httpOptions){
@@ -29,7 +48,11 @@
 	// Returns false if the token wasn't found
 	// The path is seems to be relative to the current working directory instead of the script file directory
 	// TODO: Figure out a better way to deal with the path than this
-	function getToken($path){
+	function getToken(){
+		global $config;
+		
+		$path = $config->{"tokenPath"};
+
 		if(!file_exists($path)){
 			return false;
 		}

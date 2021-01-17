@@ -37,8 +37,7 @@
 	}
 
 	// Get token
-	// TODO: Make path not hardcoded
-	$token = getToken("api.token");
+	$token = getToken();
 
 	// Search for book
 	if(isset($book)){

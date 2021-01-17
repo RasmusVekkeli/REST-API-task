@@ -18,6 +18,10 @@ File contents:
 		"port": 80,					// Port the server binds to
 		"secret": "",				// JWT secret used
 		"omdbKey": ""				// The OMDb API key
+	},
+	"client":						// Configurations of the php client which calls the API
+	{
+		"tokenPath": "api.token"	// Path to file containing the token string. Relative paths are relative to current working directory.
 	}
 }
 ```
