@@ -1,8 +1,8 @@
 <?php
 	require_once "utility.php";
 
-	// TODO: Move this into the config.json
-	$baseUrl = "http://localhost/";
+	// Used as the API base url
+	$baseUrl = getConfig()["apiEndpoint"];
 
 	// Helper function to setup authorization and encoding query parameters into the url
 	// $endpoint is the wanted API endpoint as string

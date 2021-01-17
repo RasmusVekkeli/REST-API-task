@@ -5,6 +5,7 @@
 		"omdbKey": ""
 	},
 	"client": {
-		"tokenPath": "./api.token"
+		"tokenPath": "./api.token",
+		"apiEndpoint": "http://localhost/"
 	}
 }

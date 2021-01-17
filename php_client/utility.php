@@ -1,7 +1,7 @@
 <?php
-	$config = null;
+	$config;
 
-	// Loads config.json
+	// Loads config.json into $config as an array. Only uses the config.client part.
 	function loadConfig(){
 		if(!file_exists("config.json")){
 			throw new RuntimeException("No config.json file found. Make sure that your current working directory contains config.json.");
@@ -11,12 +11,22 @@
 
 		global $config;
 
-		$fullConfig = json_decode($file);
+		$fullConfig = json_decode($file, true);
 
-		$config = $fullConfig->{"client"};
+		$config = $fullConfig["client"];
 	}
 
-	loadConfig();
+	// Returns config array
+	function getConfig(){
+		global $config;
+
+		// Load config if it's not already loaded
+		if(!isset($config)){
+			loadConfig();
+		}
+
+		return $config;
+	}
 
 	// A function to help send http requests to save my sanity.
 	// Url should not contain any characters that should have been escaped already
@@ -47,11 +57,8 @@
 	// Returns token as string if the token file exists
 	// Returns false if the token wasn't found
 	// The path is seems to be relative to the current working directory instead of the script file directory
-	// TODO: Figure out a better way to deal with the path than this
 	function getToken(){
-		global $config;
-		
-		$path = $config->{"tokenPath"};
+		$path = getConfig()["tokenPath"];
 
 		if(!file_exists($path)){
 			return false;
