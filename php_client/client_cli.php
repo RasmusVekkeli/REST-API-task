@@ -55,7 +55,7 @@
 
 		// Show result to user
 		// TODO: Make a proper showing
-		echo(getBook($isbn));
+		echo(getBook($isbn, $token));
 		return;
 	}
 
