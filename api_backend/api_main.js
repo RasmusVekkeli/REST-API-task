@@ -80,6 +80,22 @@ app.get("/getBook", async (req, res) => {
 
 	const apiRes = await fetchAsJSON(apiQuery);
 
+	const authorsArr = [];
+
+	// Retrieve author names using keys from the original request
+	for(const authorKey of apiRes.authors){
+		const authorQuery = `https://openlibrary.org/${authorKey.key}.json`;
+		
+		const authorRes = await fetchAsJSON(authorQuery);
+
+		console.log(authorRes);
+
+		authorsArr.push(authorRes.name);
+	}
+
+	// Replace the author keys with the author names
+	apiRes.authors = authorsArr;
+
 	console.log(apiRes);
 
 	// Send resulting information back as JSON
