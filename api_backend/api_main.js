@@ -88,8 +88,6 @@ app.get("/getBook", async (req, res) => {
 		
 		const authorRes = await fetchAsJSON(authorQuery);
 
-		console.log(authorRes);
-
 		authorsArr.push(authorRes.name);
 	}
 

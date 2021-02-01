@@ -53,4 +53,58 @@
 
 		return apiRequest("getBook", $queryArr, $token);
 	}
+
+	// Prints horizontal rule
+	function hr(){
+		echo("===================================================================\n");
+	}
+
+	// Generates and prints pretty output for movie data
+	function printMovie($movieDataStr){
+		$movieData = json_decode($movieDataStr, true);
+
+		// Print movie info in a neat format
+		printf("%s (%u)\n", $movieData["Title"], $movieData["Year"]);
+		hr();
+
+		printf("Release Date: %s\n", $movieData["Released"]);
+		printf("Runtime Length: %s\n", $movieData["Runtime"]);
+		printf("Genre: %s\n", $movieData["Genre"]);
+		hr();
+
+		printf("%s\n", $movieData["Plot"]);
+		hr();
+
+		printf("Actors: %s\n", $movieData["Actors"]);
+		printf("Director: %s\n", $movieData["Director"]);
+		printf("Writer: %s\n", $movieData["Writer"]);
+		printf("Production: %s\n", $movieData["Production"]);
+		printf("Country: %s\n", $movieData["Country"]);
+		hr();
+
+		printf("Awards: %s\n", $movieData["Awards"]);
+		printf("Metascore: %s\n", $movieData["Metascore"]);
+		printf("imdbRating: %s\n", $movieData["imdbRating"]);
+	}
+
+	function printBook($bookDataStr){
+		$bookData = json_decode($bookDataStr, true);
+
+		// Print book data in a neat format
+		printf("%s (%u)\n", $bookData["title"], $bookData["publish_date"]);
+		printf("By %s\n", implode(", ", $bookData["authors"]));
+		hr();
+
+		printf("Release Year: %s\n", $bookData["publish_date"]);
+		printf("Length: %u pages\n", $bookData["number_of_pages"]);
+		printf("Genre: %s\n", implode(", ", $bookData["genres"]));
+		hr();
+
+		printf("Subjects:\n%s\n", implode("\n", $bookData["subjects"]));
+		hr();
+
+		printf("Authors: %s\n", implode(", ", $bookData["authors"]));
+		printf("Contributors: %s\n", implode(", ", $bookData["contributions"]));
+		printf("Publishers: %s\n", implode(", ", $bookData["publishers"]));
+	}
 ?>

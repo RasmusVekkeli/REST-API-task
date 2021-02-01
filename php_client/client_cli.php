@@ -53,9 +53,11 @@
 			return;
 		}
 
+		// Call the API
+		$bookData = getBook($isbn, $token);
+
 		// Show result to user
-		// TODO: Make a proper showing
-		echo(getBook($isbn, $token));
+		printBook($bookData);
 		return;
 	}
 
@@ -72,7 +74,12 @@
 			return;
 		}
 
-		echo(getMovie($title, $year, $longPlot, $token));
+		// Call the API
+		$movieData = getMovie($title, $year, $longPlot, $token);
+
+		// Show result to user
+		printMovie($movieData);
+
 		return;
 	}
 	?>
