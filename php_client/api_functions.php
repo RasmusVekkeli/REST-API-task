@@ -54,57 +54,64 @@
 		return apiRequest("getBook", $queryArr, $token);
 	}
 
-	// Prints horizontal rule
-	function hr(){
-		echo("===================================================================\n");
-	}
+	// Used for horizontal rule in pretty printing
+	$hr = "===================================================================";
 
 	// Generates and prints pretty output for movie data
 	function printMovie($movieDataStr){
 		$movieData = json_decode($movieDataStr, true);
 
+		global $hr;
+
 		// Print movie info in a neat format
-		printf("%s (%u)\n", $movieData["Title"], $movieData["Year"]);
-		hr();
-
-		printf("Release Date: %s\n", $movieData["Released"]);
-		printf("Runtime Length: %s\n", $movieData["Runtime"]);
-		printf("Genre: %s\n", $movieData["Genre"]);
-		hr();
-
-		printf("%s\n", $movieData["Plot"]);
-		hr();
-
-		printf("Actors: %s\n", $movieData["Actors"]);
-		printf("Director: %s\n", $movieData["Director"]);
-		printf("Writer: %s\n", $movieData["Writer"]);
-		printf("Production: %s\n", $movieData["Production"]);
-		printf("Country: %s\n", $movieData["Country"]);
-		hr();
-
-		printf("Awards: %s\n", $movieData["Awards"]);
-		printf("Metascore: %s\n", $movieData["Metascore"]);
-		printf("imdbRating: %s\n", $movieData["imdbRating"]);
+		print <<<END
+		{$movieData["Title"]} ({$movieData["Year"]})
+		$hr
+		Release Date: {$movieData["Released"]}
+		Runtime Length: {$movieData["Runtime"]}
+		Genre: {$movieData["Genre"]}
+		$hr
+		{$movieData["Plot"]}
+		$hr
+		Actors: {$movieData["Actors"]}
+		Director: {$movieData["Director"]}
+		Writer: {$movieData["Writer"]}
+		Production: {$movieData["Production"]}
+		Country: {$movieData["Country"]}
+		$hr
+		Awards: {$movieData["Awards"]}
+		Metascore: {$movieData["Metascore"]}
+		imdbRating: {$movieData["imdbRating"]}
+		END;
 	}
 
 	function printBook($bookDataStr){
 		$bookData = json_decode($bookDataStr, true);
 
+		global $hr;
+
+		// Pre-generate strings from arrays
+		$auhtorsStr = implode(", ", $bookData["authors"]);
+		$genreStr = implode(", ", $bookData["genres"]);
+		$subjectStr = implode("\n", $bookData["subjects"]);
+		$contributionsStr = implode(", ", $bookData["contributions"]);
+		$publisherStr = implode(", ", $bookData["publishers"]);
+
 		// Print book data in a neat format
-		printf("%s (%u)\n", $bookData["title"], $bookData["publish_date"]);
-		printf("By %s\n", implode(", ", $bookData["authors"]));
-		hr();
-
-		printf("Release Year: %s\n", $bookData["publish_date"]);
-		printf("Length: %u pages\n", $bookData["number_of_pages"]);
-		printf("Genre: %s\n", implode(", ", $bookData["genres"]));
-		hr();
-
-		printf("Subjects:\n%s\n", implode("\n", $bookData["subjects"]));
-		hr();
-
-		printf("Authors: %s\n", implode(", ", $bookData["authors"]));
-		printf("Contributors: %s\n", implode(", ", $bookData["contributions"]));
-		printf("Publishers: %s\n", implode(", ", $bookData["publishers"]));
+		print <<<END
+		{$bookData["title"]} ({$bookData["publish_date"]})
+		By $auhtorsStr
+		$hr
+		Release Year: {$bookData["publish_date"]}
+		Length: {$bookData["number_of_pages"]} pages
+		Genre: $genreStr
+		$hr
+		Subjects:
+		$subjectStr
+		$hr
+		Authors: $auhtorsStr
+		Contributions: $contributionsStr
+		Publishers: $publisherStr
+		END;
 	}
 ?>
