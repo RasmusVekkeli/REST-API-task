@@ -49,12 +49,12 @@ The file `api.token` should have been created in the project root directory.
 Command line flags:  
 ```
 Options:
--m, --movie					Set search for movie
--b, --book					Set search for book
--t, --title <titleString> 	Search with a specific title (required for movies)
--y, --year <year>			Search with a specific year (only for movies)
--l, --longPlot				Set plot description to long description (only for movies)
--i, --isbn					Search with an ISBN (required for books)
+-m, --movie                 Set search for movie
+-b, --book                  Set search for book
+-t, --title <titleString>   Search with a specific title (required for movies)
+-y, --year <year>           Search with a specific year (only for movies)
+-l, --longPlot              Set plot description to long description (only for movies)
+-i, --isbn                  Search with an ISBN (required for books)
 ```
 
 At least one of the `-m, --movie` or `-b, --book` flags must be set.
