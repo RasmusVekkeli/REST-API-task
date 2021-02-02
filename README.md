@@ -13,16 +13,16 @@ Create file `config.json` by copying and renaming `config_default.json`.
 File contents:
 ```js
 {
-	"api_backend": 							// Configurations for the API backend server
+	"api_backend":                          // Configurations for the API backend server
 	{
-		"port": 80,							// Port the server binds to
-		"secret": "",						// JWT secret used
-		"omdbKey": ""						// The OMDb API key
+		"port": 80,                         // Port the server binds to
+		"secret": "",                       // JWT secret used
+		"omdbKey": ""                       // The OMDb API key
 	},
-	"client":								// Configurations of the php client which calls the API
+	"client":                               // Configurations of the php client which calls the API
 	{
-		"tokenPath": "api.token"			// Path to file containing the token string. Relative paths are relative to current working directory.
-		"apiEndpoint": "http://localhost/"	// URL used to call the API. Note: Only affects the address used by the client; has no effect on the API server.
+		"tokenPath": "api.token"            // Path to file containing the token string. Relative paths are relative to current working directory.
+		"apiEndpoint": "http://localhost/"  // URL used to call the API. Note: Only affects the address used by the client; has no effect on the API server.
 	}
 }
 ```
